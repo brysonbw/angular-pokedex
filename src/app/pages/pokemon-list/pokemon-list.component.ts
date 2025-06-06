@@ -20,7 +20,7 @@ export class PokemonListComponent implements OnInit {
   // Children
   @ViewChild(NativeDialogComponent) nativeDialog!: NativeDialogComponent;
   // Variables
-  pokemons$!: Observable<Pokemon[]>; // Bind to this observable in the template
+  pokemons$!: Observable<Pokemon[]>;
   private currentPage: number = 0;
   private limit: number = 10;
   pokemon$!: Observable<PokemonDetail>;
