@@ -1,0 +1,101 @@
+<div class="title-container">
+  <h2 class="title">Explore Pokémon: Stats, Abilities & Sprites</h2>
+</div>
+<!-- Pokemon list/view -->
+<div class="container">
+  @if (pokemons$ | async; as pokemons) {
+    @for (pokemon of pokemons; track $index) {
+      <div class="card">
+        @if (pokemon.id) {
+          <img
+            class="img-md"
+            [src]="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.id}.png`"
+            [alt]="`${pokemon.name}-pokemon-img`"
+          />
+        } @else {
+          <em>Sprite/image not available</em>
+        }
+        <button
+          (click)="viewPokemonDetail(pokemon)"
+          type="button"
+          appcapitalizeFirstChar
+          class="pokemon-title"
+        >
+          {{ pokemon.name }} <span>({{ pokemon.id }})</span>
+        </button>
+      </div>
+    } @empty {
+      <div class="placeholder">
+        <em
+          >Pokemons for page not available. Please refresh and/or try again.</em
+        >
+      </div>
+    }
+    <div class="pagination-container">
+      <button
+        class="pagination-btn"
+        type="button"
+        [disabled]="getCurrentPage === 0"
+        (click)="previousPage()"
+      >
+        Previous
+      </button>
+      <button class="pagination-btn" type="button" (click)="nextPage()">
+        Next
+      </button>
+    </div>
+  }
+</div>
+
+<!-- Pokemon Detail Dialog -->
+<app-native-dialog #modal>
+  <div class="pokemon-detail-container">
+    @if (pokemon$ | async; as pokemon) {
+      @if (pokemon.id) {
+        <img
+          class="img-md"
+          [src]="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.id}.png`"
+          [alt]="`${pokemon.name}-pokemon-img`"
+        />
+      } @else {
+        <em>Sprite/image not available</em>
+      }
+      <table>
+        <tbody>
+          <tr>
+            <td>Name:</td>
+            <td>{{ pokemon.name }}</td>
+          </tr>
+          @if (pokemon.stats.length) {
+            @for (stat of pokemon.stats; track $index) {
+              <tr>
+                <td>{{ stat.name }}:</td>
+                <td>{{ stat.value }}</td>
+              </tr>
+            }
+          }
+          <tr>
+            <td>Abilities:</td>
+            <td>{{ pokemonAbilityNames(pokemon.abilities) }}</td>
+          </tr>
+          <tr>
+            <td>Experience:</td>
+            <td>{{ pokemon.base_experience }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3>Sprites:</h3>
+      <div class="sprites-container">
+        @for (sprite of pokemon.sprites; track $index) {
+          <img
+            class="img-md"
+            [src]="`${sprite}`"
+            [alt]="`${pokemon.name}-pokemon-sprite-${$index}-img`"
+          />
+        } @empty {
+          <em>No sprites for {{ pokemon.name }} to display.</em>
+        }
+      </div>
+    }
+  </div>
+</app-native-dialog>

@@ -1,0 +1,26 @@
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 10vh;
+  flex-wrap: wrap;
+}
+
+.footer-text {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: rgb(172, 172, 172);
+}
+
+span {
+  color: #d46bfd;
+}
+
+span:hover {
+  color: var(--white);
+}
+
+a {
+  text-decoration: none;
+}

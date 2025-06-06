@@ -1,0 +1,35 @@
+header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0.5em 1em auto 1em;
+}
+
+.nav-brand {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-weight: 500;
+}
+
+.nav-list {
+  display: inline-block;
+  padding: 0 1.5em;
+}
+
+.nav-list,
+a {
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1rem;
+  text-decoration: none;
+  color: var(--white);
+}
+
+.nav-list a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

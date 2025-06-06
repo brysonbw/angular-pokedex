@@ -1,0 +1,18 @@
+<div
+  class="dialog-backdrop"
+  [class.active]="isDialogOpen"
+  (click)="close()"
+  role="button"
+  tabindex="0"
+  aria-label="Close dialog"
+></div>
+
+<dialog #dialogRef class="dialog-card">
+  <div class="dialog-header">
+    <h3>{{ title || 'Dialog' }}</h3>
+    <button class="close-btn" (click)="close()">Close</button>
+  </div>
+  <div class="dialog-body">
+    <ng-content></ng-content>
+  </div>
+</dialog>
