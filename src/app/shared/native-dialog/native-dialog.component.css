@@ -41,6 +41,7 @@ dialog {
 .close-btn {
   background: none;
   border: none;
+  outline: none;
   color: red;
   font-size: 1.1rem;
   cursor: pointer;

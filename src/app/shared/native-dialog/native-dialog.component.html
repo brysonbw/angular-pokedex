@@ -9,8 +9,8 @@
 
 <dialog #dialogRef class="dialog-card">
   <div class="dialog-header">
-    <h3>{{ title || 'Dialog' }}</h3>
-    <button class="close-btn" (click)="close()">Close</button>
+    <h3>{{ title }}</h3>
+    <button type="button" class="close-btn" (click)="close()">Close</button>
   </div>
   <div class="dialog-body">
     <ng-content></ng-content>
