@@ -14,8 +14,8 @@ import { capitalizeFirstChar, isURLValid } from '../../utils/helperFunctions';
 })
 export class PokeApiService {
   private readonly POKE_API_BASE_URL = 'https://pokeapi.co/api/v2/';
-  private readonly pokemonListCache = new Map<number, Pokemon[]>();
-  private readonly pokemonDetailCache = new Map<string, PokemonDetail>();
+  private pokemonListCache = new Map<number, Pokemon[]>();
+  private pokemonDetailCache = new Map<string, PokemonDetail>();
 
   constructor(private httpClient: HttpClient) {}
 
@@ -71,13 +71,16 @@ export class PokeApiService {
             abilities: response.abilities.map((item) => {
               return {
                 ...item,
-                name: capitalizeFirstChar(item.ability.name),
+                name: capitalizeFirstChar(item.ability.name).replaceAll(
+                  '-',
+                  ' '
+                ),
               };
             }),
             stats: response.stats.map((item) => {
               return {
                 value: item.base_stat,
-                name: capitalizeFirstChar(item.stat.name),
+                name: capitalizeFirstChar(item.stat.name).replaceAll('-', ' '),
               };
             }),
           };
